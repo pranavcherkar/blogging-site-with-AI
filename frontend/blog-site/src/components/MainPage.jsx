@@ -35,7 +35,7 @@ const MainPage = () => {
           <img
             src={MainImg}
             alt="Image"
-            className="md:h-[550px] md:w-[550px]"
+            className="md:h-[600px] md:w-[500px]"
           />
         </div>
       </div>
