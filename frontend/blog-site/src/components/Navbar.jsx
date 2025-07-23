@@ -36,12 +36,12 @@ const Navbar = () => {
               {" "}
               <li>Home</li>
             </Link>
-            <Link to={"/Blogs"}>
+            <Link to={"/blogs"}>
               {" "}
               <li>Blogs</li>
             </Link>
 
-            <Link to={"/About"}>
+            <Link to={"/about"}>
               {" "}
               <li>About</li>
             </Link>
@@ -54,10 +54,10 @@ const Navbar = () => {
               <div></div>
             ) : (
               <div className="ml-7 md:flex gap-2">
-                <Link to={"/Login"}>
+                <Link to={"/login"}>
                   <Button>Login</Button>
                 </Link>
-                <Link className="hidden md:block" to={"/Signup"}>
+                <Link className="hidden md:block" to={"/signup"}>
                   <Button>SignUp</Button>
                 </Link>
               </div>

@@ -1,11 +1,11 @@
+import MainPage from "../components/MainPage";
 import { Button } from "../components/ui/button";
 import React from "react";
 
 const Home = () => {
   return (
     <div className="pt-20">
-      Home
-      <Button>Click mr</Button>
+      <MainPage />
     </div>
   );
 };
