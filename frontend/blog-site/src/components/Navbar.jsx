@@ -1,12 +1,39 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/LogoOg.png";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../redux/store";
+import { toast } from "sonner";
+import axios from "axios";
+import { setUser } from "../redux/authSlice";
+import { toggleTheme } from "../redux/themeSlice";
 const Navbar = () => {
-  const user = false;
+  const { user } = useSelector((store) => store.auth);
+  const { theme } = useSelector((store) => store.theme);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logoutHandler = async (e) => {
+    try {
+      const res = await axios.get(`http://localhost:8086/api/v1/user/logout`, {
+        withCredentials: true,
+      });
+      if (res.data.status) {
+        dispatch(setUser(null));
+        navigate("/");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(
+        error?.response?.data?.message || error.message || "Logout failed"
+      );
+    }
+  };
   return (
     <div className="py-2 fixed w-full dark:bg-gray-800 dark:border-b-gray-600 border-b-gray-300 border-2 bg-white z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-0">
@@ -47,11 +74,18 @@ const Navbar = () => {
             </Link>
           </ul>
           <div className="flex">
-            <Button>
-              <FaMoon />
+            <Button onClick={() => dispatch(toggleTheme())}>
+              {theme === "light" ? <FaMoon /> : <FaSun />}
             </Button>
             {user ? (
-              <div></div>
+              <div className="ml-7 flex gap-3 items-center">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+
+                <Button onClick={logoutHandler}>Logout</Button>
+              </div>
             ) : (
               <div className="ml-7 md:flex gap-2">
                 <Link to={"/login"}>
