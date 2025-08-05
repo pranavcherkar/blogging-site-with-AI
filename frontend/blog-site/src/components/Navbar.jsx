@@ -101,10 +101,26 @@ const Navbar = () => {
                   <DropdownMenuContent>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Your Blogs</DropdownMenuItem>
-                    <DropdownMenuItem>Comments</DropdownMenuItem>
-                    <DropdownMenuItem>Write Blog</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => navigate("/dashboard/profile")}
+                    >
+                      Profile
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => navigate("/dashboard/your-blog")}
+                    >
+                      Your Blogs
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => navigate("/dashboard/comments")}
+                    >
+                      Comments
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => navigate("/dashboard/write-blog")}
+                    >
+                      Write Blog
+                    </DropdownMenuItem>
                     <DropdownMenuItem>Log Out</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
