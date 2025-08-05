@@ -6,6 +6,11 @@ import About from "./pages/About";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import YourBlog from "./pages/YourBlog";
+import Comments from "./pages/Comments";
+import CreateBlog from "./pages/CreateBlog";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +53,49 @@ const router = createBrowserRouter([
         <Login />
       </>
     ),
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <>
+        <Navbar />
+        <Dashboard />
+      </>
+    ),
+    children: [
+      {
+        path: "profile",
+        element: (
+          <>
+            <Profile />
+          </>
+        ),
+      },
+      {
+        path: "your-blog",
+        element: (
+          <>
+            <YourBlog />
+          </>
+        ),
+      },
+      {
+        path: "comments",
+        element: (
+          <>
+            <Comments />
+          </>
+        ),
+      },
+      {
+        path: "write-blog",
+        element: (
+          <>
+            <CreateBlog />
+          </>
+        ),
+      },
+    ],
   },
 ]);
 const App = () => {

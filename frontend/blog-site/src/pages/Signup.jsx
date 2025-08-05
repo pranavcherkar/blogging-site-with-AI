@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import auth from "../assets/Content.jpg";
+// import auth from "../assets/Content.jpg";
 import {
   Card,
   CardContent,

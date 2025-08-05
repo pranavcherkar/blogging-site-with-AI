@@ -12,6 +12,14 @@ import { toast } from "sonner";
 import axios from "axios";
 import { setUser } from "../redux/authSlice";
 import { toggleTheme } from "../redux/themeSlice";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../components/ui/dropdown-menu";
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
   const { theme } = useSelector((store) => store.theme);
@@ -79,11 +87,27 @@ const Navbar = () => {
             </Button>
             {user ? (
               <div className="ml-7 flex gap-3 items-center">
-                <Avatar>
+                {/* <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                   <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-
+                </Avatar> */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Your Blogs</DropdownMenuItem>
+                    <DropdownMenuItem>Comments</DropdownMenuItem>
+                    <DropdownMenuItem>Write Blog</DropdownMenuItem>
+                    <DropdownMenuItem>Log Out</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <Button onClick={logoutHandler}>Logout</Button>
               </div>
             ) : (
