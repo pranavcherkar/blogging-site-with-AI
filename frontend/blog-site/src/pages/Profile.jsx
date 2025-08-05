@@ -6,6 +6,20 @@ import { Link } from "react-router-dom";
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Label } from "../components/ui/label";
 import { Button } from "../components/ui/button";
+// import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../components/ui/dialog";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+
 const Profile = () => {
   return (
     <div className="pt-20 md:ml-[320px] md:h-screen">
@@ -49,7 +63,126 @@ const Profile = () => {
                 dfgdfgdgdfgdfgdfgdfgdgdfgdgdfgdfgdfgdfgdfgfdgdfgdfgdfgdfg
               </p>
             </div>
-            <Button>Edit Profile</Button>
+            {/* <Button>Edit Profile</Button> */}
+            <Dialog>
+              <form>
+                <DialogTrigger asChild>
+                  <Button>Edit profile</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle className="text-center">
+                      Edit profile
+                    </DialogTitle>
+                    <DialogDescription className="text-center">
+                      Make changes to your profile here.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="flex gap-2">
+                      <div className="">
+                        <Label htmlFor="name-1" className="text-right mb-1">
+                          First Name
+                        </Label>
+                        <Input
+                          id="name-1"
+                          name="firstName"
+                          placeholder="First Name"
+                          type="text"
+                          className="col-span-3 text-gray-500"
+                        />
+                      </div>
+                      <div className="">
+                        <Label htmlFor="username-1" className="text-right mb-1">
+                          Last Name
+                        </Label>
+                        <Input
+                          id="name-1"
+                          name="lastName"
+                          placeholder="Last Name"
+                          type="text"
+                          className="col-span-3 text-gray-500"
+                        />
+                      </div>
+                    </div>{" "}
+                    <div className="flex gap-2">
+                      <div className="">
+                        <Label htmlFor="name-1" className="text-right mb-1">
+                          Facebook
+                        </Label>
+                        <Input
+                          id="facebook"
+                          name="facebook"
+                          placeholder="Enter a URL"
+                          type="text"
+                          className="col-span-3 text-gray-500"
+                        />
+                      </div>
+                      <div className="">
+                        <Label htmlFor="username-1" className="text-right mb-1">
+                          Instagram
+                        </Label>
+                        <Input
+                          id="instagram"
+                          name="instagram"
+                          placeholder="Enter a URL"
+                          type="text"
+                          className="col-span-3 text-gray-500"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <div className="">
+                        <Label htmlFor="name-1" className="text-right mb-1">
+                          Linkedin
+                        </Label>
+                        <Input
+                          id="linkedin"
+                          name="linkedin"
+                          placeholder="Enter a URL"
+                          type="text"
+                          className="col-span-3 text-gray-500"
+                        />
+                      </div>
+                      <div className="">
+                        <Label htmlFor="username-1" className="text-right mb-1">
+                          Github
+                        </Label>
+                        <Input
+                          id="github"
+                          name="github"
+                          placeholder="Enter a URL"
+                          type="text"
+                          className="col-span-3 text-gray-500"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label className="text-right mb-1">Discription</Label>
+                      <Textarea
+                        id="bio"
+                        name="bio"
+                        placeholder="Enter a description"
+                        className="col-span-3 text-gray-500"
+                      />
+                    </div>
+                    <div className="text-right mb-1">Picture</div>
+                    <Input
+                      id="file"
+                      type="file"
+                      accept="image/*"
+                      className="w-[277px]"
+                    />
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </DialogClose>
+                    <Button type="submit">Save changes</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </form>
+            </Dialog>
           </div>
         </Card>
       </div>
