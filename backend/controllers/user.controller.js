@@ -1,6 +1,8 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import getDataUri from "../utils/dataUri.js";
+import cloudinary from "../utils/cloudinary.js";
 export const register = async (req, res) => {
   console.log("Incoming body:", req.body);
 
@@ -129,5 +131,50 @@ export const logout = async (_, res) => {
 
 export const updateProfile = async (res, req) => {
   try {
-  } catch (error) {}
+    const userId = req.id;
+    const {
+      firstName,
+      lastName,
+      occupation,
+      bio,
+      instagram,
+      facebook,
+      linkedin,
+      github,
+    } = req.body;
+    const file = req.file;
+    const fileUri = getDataUri(file);
+    let cloudResponse = await cloudinary.uploader.upload(fileUri);
+
+    const user = await User.findById(userId).select("password");
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+        success: false,
+      });
+    }
+    //updating data
+    if (firstName) user.firstname = firstName;
+    if (lastName) user.lastname = lastName;
+    if (occupation) user.occupation = occupation;
+    if (instagram) user.instagram = instagram;
+    if (facebook) user.facebook = facebook;
+    if (linkedin) user.linkedin = linkedin;
+    if (github) user.github = github;
+    if (bio) user.bio = bio;
+    if (file) user.photoURL = cloudResponse.secure_url;
+    console.log(cloudResponse);
+    await user.save();
+    return res.status(200).json({
+      message: "Profile Updated Successfully",
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Failed to update profile",
+      success: false,
+    });
+  }
 };
