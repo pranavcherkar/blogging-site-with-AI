@@ -124,3 +124,10 @@ export const logout = async (_, res) => {
     });
   }
 };
+
+/////user profile editor////
+
+export const updateProfile = async (res, req) => {
+  try {
+  } catch (error) {}
+};
