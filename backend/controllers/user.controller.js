@@ -128,9 +128,66 @@ export const logout = async (_, res) => {
 };
 
 /////user profile editor////
+export const updateProfile = async (req, res) => {
+  try {
+    const userId = req.id;
+    const {
+      firstName,
+      lastName,
+      occupation,
+      bio,
+      instagram,
+      facebook,
+      linkedin,
+      github,
+    } = req.body;
+    // console.log("first stage entered");
 
+    // First, get the user
+    const user = await User.findById(userId).select("-password");
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+        success: false,
+      });
+    }
+
+    // Handle file upload if present
+    let cloudResponse;
+    if (req.file) {
+      const fileUri = getDataUri(req.file);
+      cloudResponse = await cloudinary.uploader.upload(fileUri);
+      // console.log("Cloudinary upload:", cloudResponse);
+      user.photoURL = cloudResponse.secure_url;
+    }
+
+    // Update user data
+    if (firstName) user.firstname = firstName;
+    if (lastName) user.lastname = lastName;
+    if (occupation) user.occupation = occupation;
+    if (instagram) user.instagram = instagram;
+    if (facebook) user.facebook = facebook;
+    if (linkedin) user.linkedin = linkedin;
+    if (github) user.github = github;
+    if (bio) user.bio = bio;
+
+    await user.save();
+
+    return res.status(200).json({
+      message: "Profile Updated Successfully",
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Failed to update profile",
+      success: false,
+    });
+  }
+};
 // export const updateProfile = async (req, res) => {
-//   console.log("first stage entered");
+//   // console.log("first stage entered");
 //   try {
 //     const userId = req.id;
 //     const {
@@ -145,15 +202,28 @@ export const logout = async (_, res) => {
 //     } = req.body;
 //     console.log("first stage entered");
 //     const file = req.file;
-//     const fileUri = getDataUri(file);
-//     let cloudResponse = await cloudinary.uploader.upload(fileUri);
+//     // const fileUri = getDataUri(file);
+//     // let cloudResponse;
+//     // if (req.file) {
+//     //   const fileUri = getDataUri(req.file);
+//     //   const cloudResponse = await cloudinary.uploader.upload(fileUri);
+//     //   console.log("Cloudinary upload:", cloudResponse);
+//     //   user.photoURL = cloudResponse.secure_url;
+//     // }
 
-//     const user = await User.findById(userId).select("password");
+//     const user = await User.findById(userId).select("-password");
 //     if (!user) {
 //       return res.status(404).json({
 //         message: "User not found",
 //         success: false,
 //       });
+//     }
+//     let cloudResponse;
+//     if (req.file) {
+//       const fileUri = getDataUri(req.file);
+//       const cloudResponse = await cloudinary.uploader.upload(fileUri);
+//       console.log("Cloudinary upload:", cloudResponse);
+//       user.photoURL = cloudResponse.secure_url;
 //     }
 //     //updating data
 //     if (firstName) user.firstname = firstName;
@@ -165,7 +235,7 @@ export const logout = async (_, res) => {
 //     if (github) user.github = github;
 //     if (bio) user.bio = bio;
 //     if (file) user.photoURL = cloudResponse.secure_url;
-//     console.log(cloudResponse);
+//     // console.log(cloudResponse);
 //     await user.save();
 //     return res.status(200).json({
 //       message: "Profile Updated Successfully",
@@ -180,62 +250,62 @@ export const logout = async (_, res) => {
 //     });
 //   }
 // };
-export const updateProfile = async (req, res) => {
-  console.log("Profile update initiated");
-  try {
-    const userId = req.id;
-    const {
-      firstName,
-      lastName,
-      occupation,
-      bio,
-      instagram,
-      facebook,
-      linkedin,
-      github,
-    } = req.body;
+// export const updateProfile = async (req, res) => {
+//   console.log("Profile update initiated");
+//   try {
+//     const userId = req.id;
+//     const {
+//       firstName,
+//       lastName,
+//       occupation,
+//       bio,
+//       instagram,
+//       facebook,
+//       linkedin,
+//       github,
+//     } = req.body;
 
-    const file = req.file;
-    let cloudResponse;
+//     const file = req.file;
+//     let cloudResponse;
 
-    if (file) {
-      const fileUri = getDataUri(file);
-      cloudResponse = await cloudinary.uploader.upload(fileUri);
-    }
+//     if (file) {
+//       const fileUri = getDataUri(file);
+//       cloudResponse = await cloudinary.uploader.upload(fileUri);
+//     }
 
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found",
-      });
-    }
+//     const user = await User.findById(userId);
+//     if (!user) {
+//       return res.status(404).json({
+//         success: false,
+//         message: "User not found",
+//       });
+//     }
 
-    // Apply updates only if values are provided
-    if (firstName) user.firstname = firstName;
-    if (lastName) user.lastname = lastName;
-    if (occupation) user.occupation = occupation;
-    if (bio) user.bio = bio;
-    if (instagram) user.instagram = instagram;
-    if (facebook) user.facebook = facebook;
-    if (linkedin) user.linkedin = linkedin;
-    if (github) user.github = github;
-    if (file && cloudResponse) user.photoURL = cloudResponse.secure_url;
+//     // Apply updates only if values are provided
+//     if (firstName) user.firstname = firstName;
+//     if (lastName) user.lastname = lastName;
+//     if (occupation) user.occupation = occupation;
+//     if (bio) user.bio = bio;
+//     if (instagram) user.instagram = instagram;
+//     if (facebook) user.facebook = facebook;
+//     if (linkedin) user.linkedin = linkedin;
+//     if (github) user.github = github;
+//     if (file && cloudResponse) user.photoURL = cloudResponse.secure_url;
 
-    await user.save();
+//     await user.save();
 
-    const { password, ...userData } = user._doc;
+//     const { password, ...userData } = user._doc;
 
-    return res.status(200).json({
-      success: true,
-      message: "Profile Updated Successfully",
-      user: userData,
-    });
-  } catch (error) {
-    console.error("Error in updateProfile:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to update profile",
-    });
-  }
-};
+//     return res.status(200).json({
+//       success: true,
+//       message: "Profile Updated Successfully",
+//       user: userData,
+//     });
+//   } catch (error) {
+//     console.error("Error in updateProfile:", error);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to update profile",
+//     });
+//   }
+// };
