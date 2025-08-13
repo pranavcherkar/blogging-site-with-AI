@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import YourBlog from "./pages/YourBlog";
 import Comments from "./pages/Comments";
 import CreateBlog from "./pages/CreateBlog";
+import UpdateBlog from "./pages/UpdateBlog";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -92,6 +93,14 @@ const router = createBrowserRouter([
         element: (
           <>
             <CreateBlog />
+          </>
+        ),
+      },
+      {
+        path: "write-blog/:blogId",
+        element: (
+          <>
+            <UpdateBlog />
           </>
         ),
       },
