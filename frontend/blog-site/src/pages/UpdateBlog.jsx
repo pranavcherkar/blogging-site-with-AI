@@ -61,7 +61,7 @@ const UpdateBlog = () => {
     const forData = new FormData();
     forData.append("title", blogData.title);
     forData.append("subtitle", blogData.subtitle);
-    forData.append("description", blogData.content);
+    forData.append("description", content);
     forData.append("category", blogData.category);
     forData.append("file", blogData.thumbnail);
     try {
