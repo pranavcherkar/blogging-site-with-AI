@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/LogoOg.png";
 import { Input } from "./ui/input";
@@ -23,6 +23,7 @@ import {
 import userLogo from "../assets/user.jpg";
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
+  const [searchTerm, setSearchTerm] = useState("");
   // const {loading} = useSelector((store)=> store.loading)
   const { theme } = useSelector((store) => store.theme);
   const dispatch = useDispatch();
@@ -44,6 +45,13 @@ const Navbar = () => {
       );
     }
   };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+      setSearchTerm("");
+    }
+  };
   return (
     <div className="py-2 fixed w-full dark:bg-gray-800 dark:border-b-gray-600 border-b-gray-300 border-2 bg-white z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-0">
@@ -59,9 +67,11 @@ const Navbar = () => {
             <Input
               type="text"
               placeholder="Search "
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className=" border border-gray-700 dark:bg-gray-900 bg-gray-300 w-[300px] hidden md:block"
             />
-            <Button className="absolute right-0 top-0">
+            <Button onClick={handleSearch} className="absolute right-0 top-0">
               <Search />
             </Button>
           </div>

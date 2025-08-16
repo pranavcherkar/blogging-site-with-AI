@@ -48,14 +48,18 @@ const RecentBlogs = () => {
           <div className="my-5 flex flex-wrap gap-3">
             {[
               "Blogging",
-              "Web Development",
+              "Web Technology",
               "Digital Marketing",
               "Cooking",
               "Photography",
               "Sports",
             ].map((item, index) => {
               return (
-                <Badge key={index} className="cursor-pointer">
+                <Badge
+                  onClick={() => navigate(`/search?q=${item}`)}
+                  key={index}
+                  className="cursor-pointer"
+                >
                   {item}
                 </Badge>
               );
