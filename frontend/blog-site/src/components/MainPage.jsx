@@ -17,10 +17,10 @@ const MainPage = () => {
             technology, Blockchain and AI
           </p>
           <div className=" flex space-x-4">
-            <Link>
+            <Link to={"/dashboard/write-blog"}>
               <Button className="text-lg">Get Started</Button>
             </Link>
-            <Link>
+            <Link to={"/about"}>
               <Button
                 variant="outline"
                 className="border-white px-6 py-3 text-lg"

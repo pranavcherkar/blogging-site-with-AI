@@ -12,6 +12,8 @@ import { toast } from "sonner";
 import axios from "axios";
 import { setUser } from "../redux/authSlice";
 import { toggleTheme } from "../redux/themeSlice";
+import { HiMenuAlt1 } from "react-icons/hi";
+import { HiMenuAlt3 } from "react-icons/hi";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,9 +23,11 @@ import {
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
 import userLogo from "../assets/user.jpg";
+import ResponsiveMenu from "./ResponsiveMenu";
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
   const [searchTerm, setSearchTerm] = useState("");
+  const [openNav, setOpenNav] = useState(false);
   // const {loading} = useSelector((store)=> store.loading)
   const { theme } = useSelector((store) => store.theme);
   const dispatch = useDispatch();
@@ -51,6 +55,10 @@ const Navbar = () => {
       navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
       setSearchTerm("");
     }
+  };
+
+  const toggleNav = () => {
+    setOpenNav(!openNav);
   };
   return (
     <div className="py-2 fixed w-full dark:bg-gray-800 dark:border-b-gray-600 border-b-gray-300 border-2 bg-white z-50">
@@ -136,7 +144,9 @@ const Navbar = () => {
                     <DropdownMenuItem>Log Out</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-                <Button onClick={logoutHandler}>Logout</Button>
+                <Button className="hidden md:block" onClick={logoutHandler}>
+                  Logout
+                </Button>
               </div>
             ) : (
               <div className="ml-7 md:flex gap-2">
@@ -149,7 +159,17 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          {openNav ? (
+            <HiMenuAlt3 onClick={toggleNav} className="w-7 h-7 md:hidden" />
+          ) : (
+            <HiMenuAlt1 onClick={toggleNav} className="w-7 h-7 md:hidden" />
+          )}
         </nav>
+        <ResponsiveMenu
+          openNav={openNav}
+          setOpenNav={setOpenNav}
+          logoutHandler={logoutHandler}
+        />
       </div>
     </div>
   );
