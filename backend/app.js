@@ -6,6 +6,7 @@ import blogRoute from "./routes/blog.routes.js";
 import commentRoute from "./routes/comment.routes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import path from "path";
 const app = express();
 dotenv.config();
 app.use(express.json());
@@ -17,10 +18,21 @@ app.use(
     credentials: true,
   })
 );
+const __dirname = onratechange.resolve();
 ///apis
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/blog", blogRoute);
 app.use("/api/v1/comment", commentRoute);
+
+// Serve static files from the correct path
+app.use(express.static(path.join(__dirname, "../frontend/blog-site/dist")));
+
+// Fallback route for SPA
+app.get("*", (_, res) => {
+  res.sendFile(
+    path.resolve(__dirname, "../frontend/blog-site/dist", "index.html")
+  );
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
