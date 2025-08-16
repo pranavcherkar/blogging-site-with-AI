@@ -149,7 +149,7 @@ MIT
 
 ## 👤 Author
 
-Made with ❤️ by [Your Name](https://github.com/your-username)
+ by [pranav Cherkar](https://github.com/pranavcherkar)
 
 ---
 
