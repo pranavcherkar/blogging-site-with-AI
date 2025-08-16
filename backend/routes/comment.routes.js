@@ -15,7 +15,7 @@ const router = express.Router();
 router.route("/:id/create").post(isAuthenticated, createComment);
 router.route("/:id/delete").delete(isAuthenticated, deleteComment);
 router.route("/:id/edit").put(isAuthenticated, editComment);
-router.route("/:id/comment/all").get(isAuthenticated, getCommentsOfPost);
+router.route("/:id/comment/all").get(getCommentsOfPost);
 router.route("/:id/like").get(isAuthenticated, likeComment);
 router.route("/my-blogs/comments").get(isAuthenticated, getAllCommentOnMyBlogs);
 
