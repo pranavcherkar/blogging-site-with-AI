@@ -52,7 +52,7 @@ const Navbar = () => {
           <Link to={"/"}>
             <div className="flex gap-2 items-center">
               <img src={logo} alt="" className="w-14 h-7 md:h-10 dark:invert" />
-              <h1 className="font-bold text-3xl md:text-4xl">Logo</h1>
+              <h1 className="font-bold text-3xl md:text-4xl">BlogAI</h1>
             </div>
           </Link>
           <div className="relative hidden md:block">

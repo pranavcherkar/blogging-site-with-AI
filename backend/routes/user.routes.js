@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getAllUsers,
   login,
   logout,
   register,
@@ -16,4 +17,5 @@ router
   .route("/profile/update")
   .put(isAuthenticated, singleUpload, updateProfile);
 
+router.route("/all-users").get(getAllUsers);
 export default router;
