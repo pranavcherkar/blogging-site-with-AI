@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { Label } from "../components/ui/label";
 import { Button } from "../components/ui/button";
-// import { Button } from "@/components/ui/button"
+// import { Button } from "../components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -25,6 +25,7 @@ import axios from "axios";
 import { toast } from "sonner";
 // import React from "react";
 import { Loader2 } from "lucide-react";
+import TotalProperty from "../components/TotalProperty";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -277,6 +278,7 @@ const Profile = () => {
           </div>
         </Card>
       </div>
+      <TotalProperty />
     </div>
   );
 };
