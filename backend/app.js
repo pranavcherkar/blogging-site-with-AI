@@ -20,7 +20,7 @@ app.use(
 );
 
 // const __dirname = onratechange.resolve();
-///apis
+///apis to use
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/blog", blogRoute);
 app.use("/api/v1/comment", commentRoute);
