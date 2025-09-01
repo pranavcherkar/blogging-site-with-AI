@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: |
             backend/package-lock.json
             frontend/blog-site/package-lock.json
@@ -35,8 +35,8 @@ jobs:
       - name: Start backend with PM2
         working-directory: ./backend
         run: |
-          /home/ubuntu/.nvm/versions/node/v22.16.0/bin/pm2 restart backend || \
-          /home/ubuntu/.nvm/versions/node/v22.16.0/bin/pm2 start app.js --name backend
+          /home/ubuntu/.nvm/versions/node/v22.19.0/bin/pm2 restart backend || \
+          /home/ubuntu/.nvm/versions/node/v22.19.0/bin/pm2 start app.js --name backend
       # ------------------------------
       # FRONTEND SETUP
       # ------------------------------
