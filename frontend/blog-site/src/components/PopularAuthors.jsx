@@ -6,7 +6,7 @@ const PopularAuthors = () => {
   const getAllUsers = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8086/api/v1/user/all-users`
+        `https://blogging-site-with-ai.onrender.com/api/v1/user/all-users`
       );
       if (res.data.success) {
         setPopularUser(res.data.users);

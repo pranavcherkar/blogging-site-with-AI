@@ -13,7 +13,7 @@ const TotalProperty = () => {
   const getOwnBlog = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8086/api/v1/blog/get-own-blogs`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/blog/get-own-blogs`,
         { withCredentials: true }
       );
       if (res.data.success) {
@@ -26,7 +26,7 @@ const TotalProperty = () => {
   const getTotalComments = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8086/api/v1/comment/my-blogs/comments`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/comment/my-blogs/comments`,
         { withCredentials: true }
       );
       if (res.data.success) {
@@ -40,7 +40,7 @@ const TotalProperty = () => {
   const getTotalLikes = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8086/api/v1/blog/my-blogs/likes`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/blog/my-blogs/likes`,
         { withCredentials: true }
       );
       if (res.data.success) {

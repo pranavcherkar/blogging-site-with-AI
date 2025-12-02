@@ -34,9 +34,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logoutHandler = async (e) => {
     try {
-      const res = await axios.get(`http://localhost:8086/api/v1/user/logout`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `https://blogging-site-with-ai.onrender.com/api/v1/user/logout`,
+        {
+          withCredentials: true,
+        }
+      );
       if (res.data.status) {
         dispatch(setUser(null));
         navigate("/");

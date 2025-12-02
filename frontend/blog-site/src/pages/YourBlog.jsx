@@ -76,7 +76,7 @@ const YourBlog = () => {
   const getOwnBlogs = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8086/api/v1/blog/get-own-blogs`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/blog/get-own-blogs`,
         { withCredentials: true }
       );
       if (res.data.success) {
@@ -87,7 +87,7 @@ const YourBlog = () => {
   const deleteBlog = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:8086/api/v1/blog/delete/${id}`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/blog/delete/${id}`,
         { withCredentials: true }
       );
       if (res.data.success) {

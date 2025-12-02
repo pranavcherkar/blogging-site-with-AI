@@ -38,7 +38,7 @@ const Login = () => {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(
-        `http://localhost:8086/api/v1/user/login`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/user/login`,
         input,
         {
           headers: {
