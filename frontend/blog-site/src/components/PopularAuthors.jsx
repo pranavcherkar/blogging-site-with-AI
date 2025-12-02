@@ -4,6 +4,7 @@ import userLogo from "../assets/user.jpg";
 const PopularAuthors = () => {
   const [popularUser, setPopularUser] = useState([]);
   const getAllUsers = async () => {
+    //credentials not added here
     try {
       const res = await axios.get(
         `https://blogging-site-with-ai.onrender.com/api/v1/user/all-users`

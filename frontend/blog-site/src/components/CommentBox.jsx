@@ -129,6 +129,7 @@ const CommentBox = ({ selectedBlog }) => {
       console.log("No selected blog available");
       return;
     }
+    //credentials not added here
     const getAllCommentsOfBlog = async () => {
       try {
         const res = await axios.get(
