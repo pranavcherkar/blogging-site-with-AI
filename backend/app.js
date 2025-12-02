@@ -11,7 +11,15 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://blogging-site-with-ai.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
 ///apis
 app.use("/api/v1/user", userRoute);
