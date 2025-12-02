@@ -13,10 +13,11 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     credentials: true,
   })
 );
+
 ///apis
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/blog", blogRoute);
