@@ -176,7 +176,7 @@ Generate only the title, nothing else:`;
     try {
       dispatch(setLoading(true));
       const res = await axios.put(
-        `http://localhost:8086/api/v1/blog/${id}`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/blog/${id}`,
         forData,
         {
           headers: {

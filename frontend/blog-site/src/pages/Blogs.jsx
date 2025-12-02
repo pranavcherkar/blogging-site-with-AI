@@ -11,7 +11,7 @@ const Blogs = () => {
     const getAllPublsihedBlogs = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8086/api/v1/blog/get-published-blogs`,
+          `https://blogging-site-with-ai.onrender.com/api/v1/blog/get-published-blogs`,
           { withCredentials: true }
         );
         if (res.data.success) {

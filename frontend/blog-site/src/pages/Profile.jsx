@@ -71,7 +71,7 @@ const Profile = () => {
     try {
       dispatch(setLoading(true));
       const res = await axios.put(
-        `http://localhost:8086/api/v1/user/profile/update`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/user/profile/update`,
         formData,
         {
           headers: {

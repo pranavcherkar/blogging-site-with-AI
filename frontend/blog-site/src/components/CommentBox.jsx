@@ -40,7 +40,7 @@ const CommentBox = ({ selectedBlog }) => {
   const commentHandler = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:8086/api/v1/comment/${selectedBlog._id}/create`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/comment/${selectedBlog._id}/create`,
         { content },
         {
           headers: {
@@ -77,7 +77,7 @@ const CommentBox = ({ selectedBlog }) => {
   const deleteComment = async (commentId) => {
     try {
       const res = await axios.delete(
-        `http://localhost:8086/api/v1/comment/${commentId}/delete`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/comment/${commentId}/delete`,
         {
           withCredentials: true,
         }
@@ -100,7 +100,7 @@ const CommentBox = ({ selectedBlog }) => {
   const editCommentHandler = async (commentId) => {
     try {
       const res = await axios.put(
-        `http://localhost:8086/api/v1/comment/${commentId}/edit`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/comment/${commentId}/edit`,
         { content: editedContent },
         {
           withCredentials: true,
@@ -132,7 +132,7 @@ const CommentBox = ({ selectedBlog }) => {
     const getAllCommentsOfBlog = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8086/api/v1/comment/${selectedBlog._id}/comment/all`
+          `https://blogging-site-with-ai.onrender.com/api/v1/comment/${selectedBlog._id}/comment/all`
         );
         const data = res.data.comments;
         dispatch(setComment(data));
@@ -146,7 +146,7 @@ const CommentBox = ({ selectedBlog }) => {
   const likeCommentHandler = async (commentId) => {
     try {
       const res = await axios.get(
-        `http://localhost:8086/api/v1/comment/${commentId}/like`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/comment/${commentId}/like`,
         {
           withCredentials: true,
         }

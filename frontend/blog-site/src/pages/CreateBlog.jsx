@@ -31,7 +31,7 @@ const CreateBlog = () => {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(
-        `http://localhost:8086/api/v1/blog/`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/blog/`,
         { title, category },
         {
           headers: {

@@ -40,7 +40,7 @@ const Signup = () => {
     try {
       dispatch(setLoading(true));
       const res = await axios.post(
-        `http://localhost:8086/api/v1/user/register`,
+        `https://blogging-site-with-ai.onrender.com/api/v1/user/register`,
         user,
         {
           headers: {
