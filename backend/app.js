@@ -11,12 +11,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 ///apis
 app.use("/api/v1/user", userRoute);
